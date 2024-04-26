@@ -1,0 +1,106 @@
+---
+title: "Lab Report 6 R Worksheet"
+output:
+  pdf_document: default
+  html_notebook: default
+  word_document: default
+  html_document:
+    df_print: paged
+---
+
+
+```{r}
+#Part b)
+SKI=read.csv("OlympicSkiing.csv")
+SKI
+#Part c)
+
+```
+
+shows age vector
+
+```{r}
+SKI$Age
+
+```
+  
+gives largest value of age
+
+```{r}
+max(SKI$Age)
+```
+ 
+gives smallest value of age
+
+```{r}
+min(SKI$Age)
+```
+  
+  mean(DATA_SET$VARIABLE_NAME)      gives the average value of a variable
+  
+  median(DATA_SET$VARIABLE_NAME)    gives the "middle" value of a variable
+  
+  sum(DATA_SET$VARIABLE_NAME)       gives the sum of the values in a variable
+  
+  sd(DATA_SET$VARIABLE_NAME)        gives the standard deviation in a variable
+  
+  summary(DATA_SET$VARIABLE_NAME)   gives summary statistics of a variable
+ 
+
+
+b) The number of athletes from Canada in the sample of 1000 athletes.
+
+[Hint: Include [SKI$Team=="CAN"] before the last bracket in the length() command.]
+
+The mean and median of the "Age" variable.
+
+Summary statistics of the "Weight" variable. 
+
+
+```{r}
+#Part a)
+class(SKI$Event)
+#Part b)
+#length(SKI[SKI$Team=="CAN"])
+mean(SKI$Age)
+median(SKI$Age)
+#Part c)
+summary(SKI$Weight)
+
+#Part d)
+
+```
+showing dimensions of the source file
+
+```{r}
+dim(SKI)
+```
+
+Fiting a linear model to the data (i.e. line of best fit) when using "Height" to predict "Weight" in the SKI data set.  Calling it SKIMODEL. Displaying a summary of the model once defined.
+
+```{r}
+SKIMODEL=lm(Weight~Height,SKI) 
+summary(SKIMODEL)
+```
+
+
+Runing the following code to find the 90% confidence interval for the slope of the true regression line when using "Height" to predict "Weight" in the SKI data set.
+
+
+```{r}
+confint(SKIMODEL,'Height', level=0.90)
+```
+
+Finding the 90% confidence interval for the intercept (look at the summary where it is referenced as (Intercept)) of the true regression line when using "Height" to predict "Weight" in the OLY data set.
+
+```{r}
+
+confint(SKIMODEL,'(Intercept)', level=0.90)
+```
+
+Runing the following code to produce a scatter plot of the (height,weight) data points along with the linear model from above.
+
+```{r}
+plot(SKI$Height,SKI$Weight)
+abline(SKIMODEL)
+```

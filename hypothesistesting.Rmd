@@ -1,0 +1,35 @@
+---
+title: "Lab Report 5 R Worksheet"
+output:
+  pdf_document: default
+  html_notebook: default
+  word_document: default
+  html_document:
+    df_print: paged
+---
+
+Importing the dataset, checking if the BMI of players is less than 73 with a 95% confidence interval.(result: it is not)
+
+```{r}
+SKI=read.csv("OlympicSkiing.csv")
+
+
+H=SKI$Height/100
+W=SKI$Weight
+
+BMI=W/H^2
+#BMI
+
+t.test(W,alternative = "less", mu=73,conf.level = 1-0.05)
+```
+Checking to see if the mean height of players is 1.73 meters with a 90% confidence interval.(result: it is)
+
+```{r}
+t.test(H,alternative = "two.sided", mu=1.73,conf.level = 1-0.1)
+```
+Checking if the mean BMI of players is greater than 24 with a 99% confidence interval.(result: it is not)
+
+```{r}
+t.test(BMI,alternative = "greater", mu=24,conf.level = 1-0.01)
+```
+
